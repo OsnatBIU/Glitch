@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from scipy.signal import butter, filtfilt
 
-def get_data():
-    x_df = pd.read_csv('Data/eyeXVec.csv')
+def get_data(path=''):
+    x_df = pd.read_csv(os.path.join(path,'Data/eyeXVec.csv'))
     x_df = x_df.transpose()
     x_df.reset_index(drop=True, inplace=True)
     return x_df

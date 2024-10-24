@@ -5,12 +5,16 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from scipy.signal import butter, filtfilt
 
-def get_data(path=''):
-    x_df = pd.read_csv(os.path.join(path,'Data/eyeXVec.csv'))
+def get_data(path='', axis='x'):
+    if axis == 'x':
+        x_df = pd.read_csv(os.path.join(path,'Data/eyeXVec.csv'))
+    elif axis=='y':
+        x_df = pd.read_csv(os.path.join(path, 'Data/eyeYVec.csv'))
+    else:
+        print('get_data: unsupported axis, {}',format(axis))
     x_df = x_df.transpose()
     x_df.reset_index(drop=True, inplace=True)
     return x_df
-    # print(x_data.head())
 
 def get_true_events():
     return pd.read_csv('Data/MSduringVecs.csv')

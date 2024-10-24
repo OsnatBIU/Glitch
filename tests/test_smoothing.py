@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from scipy.signal import savgol_filter
 
 # Define the moving average function
 from preprocess_data import get_data
@@ -37,6 +37,12 @@ def exponential_smoothing(df, alpha):
     """Apply exponential smoothing to each row of a DataFrame."""
     return df.apply(lambda row: row.ewm(alpha=alpha).mean(), axis=1)
 
+def savgol_smoothing(df, savgol_window ,savgol_polyorder=2):
+    return df.apply(lambda row: savgol_filter(savgol_window,savgol_polyorder),
+                    axis=1)
+
+
+# can you write a function calculate the
 
 def test_exponential_smoothing_single_row(df, alphas, row_idx=0):
     """Test exponential smoothing with different alpha values for a specific row."""
